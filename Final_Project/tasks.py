@@ -1,11 +1,18 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template,g
 from model import Task
+from user import User
+from peewee import JOIN
+from users import *
 
 task_bp = Blueprint('task', __name__)
 
 @task_bp.route('/tasks', methods=['GET'])
 def get_tasks():
-    tasks = list(Task.select())
+    id_user_task = id_for_task()
+    print("Id-ul user este: " + str(id_for_task()))
+    tasks = (Task
+         .select(Task.task_id, Task.task_title, Task.task_description, Task.task_state)
+         .join(User, join_type=JOIN.INNER, on=(id_user_task == Task.user_id)))
     return render_template('tasks.html', tasks=tasks)
 
 @task_bp.route('/tasks/<int:task_id>', methods=['GET'])
@@ -18,9 +25,10 @@ def get_task_by_id(task_id):
 
 @task_bp.route('/submit_task', methods=['POST'])
 def submit_task():
+    id_user_task = id_for_task()
     task_title = request.form.get('task_title')
     task_description = request.form.get('task_description')  
-    task = Task(task_title=task_title, task_description=task_description)
+    task = Task(task_title=task_title, task_description=task_description, user_id=id_user_task)
     task.save()
     return """
     <script>

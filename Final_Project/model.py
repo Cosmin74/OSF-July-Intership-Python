@@ -10,6 +10,7 @@ class Task(BaseModel):
     task_title = TextField(null=True)
     task_description = TextField(null=True)
     task_state = TextField(null=True)
-
+    user_id = IntegerField(null=True)
+    
     class Meta:
         table_name = 'task'
