@@ -40,7 +40,6 @@ def register_page():
 @users_bp.route('/', methods=['GET', 'POST'])
 def login_user():
     ok = 2  
-
     if request.method == 'POST':
         users = list(User.select())
         mail = request.form.get('email')
@@ -49,8 +48,7 @@ def login_user():
         for user in users:
             if user.email == mail and bcrypt.checkpw(password.encode('utf-8'), user.encrypt_pass.encode('utf-8')):
                 ok = 1
-                return render_template('index.html')
-        
+                return render_template('index.html', user=user)
         ok = 0
     
     return render_template('login.html', ok=ok)    
