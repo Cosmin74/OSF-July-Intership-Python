@@ -22,7 +22,9 @@
     <ul>
         {% for task in tasks %}
         <fieldset>
-            <h3> For the task number {{ task.task_id }}, {{ task.task_title }}, {{ task.task_description }} </h3>
+          <div class="{% if task.task_state == 'Completed' %}task-container{% endif %}">
+            <div class="{% if task.task_state == 'Completed' %}task-header{% endif %}">
+            <h3 class="{% if task.task_state == 'Completed' %}completed{% endif %}"> For the task number {{ task.task_id }}, {{ task.task_title }}, {{ task.task_description }} </h3>
             <strong>Status:</strong> 
             <span class="{% if task.task_state == 'Completed' %}task-completed{% else %}task-not-completed{% endif %}">
               {{ task.task_state }}
@@ -37,11 +39,32 @@
                 <button type="submit" class="buton">Update</button>
             </form>
             </div>
+            
+
+            {% if task.task_state == 'Completed' %}
+            <div class="checked">
+              <span class="check-sign">&#10003;</span>
+            </div>
+            {% endif %}
+          </div>
         </fieldset><br><br>
         {% endfor %}
     </ul>
 
     <style>
+
+      .check-sign {
+        margin-left: 1400px;
+        margin-top: 1500px;
+        margin-bottom: 1900px;
+        font-size: 60px;
+        color:green;
+    }
+
+      .completed {
+        text-decoration: line-through;
+      }
+
         h1 {
             transform: translate (-50%, -50%);
             font-size:70px;

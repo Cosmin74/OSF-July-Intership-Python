@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template,g
+from flask import Blueprint, jsonify, request, render_template
 from model import Task
 from user import User
 from peewee import JOIN
@@ -9,15 +9,16 @@ task_bp = Blueprint('task', __name__)
 @task_bp.route('/tasks', methods=['GET'])
 def get_tasks():
     id_user_task = id_for_task()
-    print("Id-ul user este: " + str(id_for_task()))
     tasks = (Task
          .select(Task.task_id, Task.task_title, Task.task_description, Task.task_state)
          .join(User, join_type=JOIN.INNER, on=(id_user_task == Task.user_id)))
-    return render_template('tasks.html', tasks=tasks)
+    unique_tasks = list(set(tasks))    
+    return render_template('tasks.html', tasks=unique_tasks)
 
 @task_bp.route('/tasks/<int:task_id>', methods=['GET'])
 def get_task_by_id(task_id):
-    task = Task.get_or_none(Task.task_id == task_id)
+    id_user_task = id_for_task()
+    task = Task.select(Task.task_id, Task.task_title, Task.task_description, Task.task_state).join(User, join_type=JOIN.INNER, on=(id_user_task == Task.user_id)).where(Task.task_id == task_id).first()
     if task:
         return render_template('task.html', task=task)
     else:
