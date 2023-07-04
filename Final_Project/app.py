@@ -9,9 +9,9 @@ app.register_blueprint(users_bp)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return render_template('login.html')
+    ok = 2
+    return render_template('login.html', ok=ok)
 
-# Run the Flask application
 if __name__ == '__main__':
     with db:
         app.run(debug=True)

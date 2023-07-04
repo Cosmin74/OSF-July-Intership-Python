@@ -15,6 +15,7 @@
             <button type="button" id="viewTasksBtn" class="btn-1">View Tasks</button><br><br>
             <input type="number" id="task_id" name="task_id" class="inbox"><br>
             <button type="button" id="viewTaskBtn" class="btn-1">View Task</button><br><br>
+            <button id="logoutButton" class="buton_1">Logout</button>
         </fieldset>
     </form>
 </main>
@@ -107,7 +108,21 @@
       cursor: pointer;
       transition: color 0.4s;
       position: relative;
+
     }
+
+    .buton_1 {
+      background-color: #ff4466;
+      border: 2px solid #1cbae6;
+      text-transform: uppercase;
+      padding: 10px 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: color 0.4s;
+      position: relative;
+      align:left;
+    }
+
 
     .btn-1:hover {
       color: #1cbae6;
@@ -140,5 +155,7 @@
      }
 
     </style>
+
+    
   </body>
 </html>

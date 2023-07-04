@@ -10,7 +10,7 @@
         <fieldset class="card">
           
         {% if ok == 1%}
-          <p style="background-color=green;">Authetification succesfuly</p>
+          <p class="background-colored-paragraph">Authetification succesfuly</p>
         {% endif %}
         
         <label for="">Last name:</label><br><br>
@@ -33,6 +33,11 @@
     </form>
 
     <style>
+
+      .background-colored-paragraph {
+          color: green; 
+       }
+
         h1 {
             transform: translate (-50%, -50%);
             font-size:70px;
