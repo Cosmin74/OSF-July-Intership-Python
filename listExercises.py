@@ -2,7 +2,8 @@
 #You are given a list of integers. Your task is to find the second largest number in the list.
 #Write a Python function called find_second_largest(numbers) that takes a list of integers as input and returns the second largest number in the list.
 
-def find_second_largest(numbers):
+#Method 1 sorting the list desceding and taking the second element 
+def find_second_largest_1(numbers):
     
     '''
     The list is sorted in desceding order and it is token the second element of it representing the second largest number in the list
@@ -10,6 +11,25 @@ def find_second_largest(numbers):
     
     numbers.sort(reverse=True)
     second_maximum = numbers[1]
+    return second_maximum
+
+#Method 2 sorting the list asceding and taking the second element 
+def find_second_largest_2(numbers):
+    
+    '''
+    The list is sorted in asceding order and it is token the last but one element of it representing the second largest number in the list using negative index
+    '''
+    
+    numbers.sort()
+    second_maximum = numbers[-2]
+    return second_maximum
+
+#Method 3 finding the first maxim element and remove from list and again using maz function
+def find_second_largest_3(numbers):
+    
+    first_maximum = max(numbers)
+    numbers.remove(first_maximum)
+    second_maximum = max(numbers)
     return second_maximum
 
 #Problem 2:
@@ -51,8 +71,14 @@ def sum_even_numbers_3(numbers):
 
 if __name__ == "__main__":
     numbers_test = [5, 2, 7, 3, 9, 1]
-    result = find_second_largest(numbers_test)
-    print("The second largest number in the list is:" + str(result))
+    result = find_second_largest_1(numbers_test)
+    print("The second largest number in the list using descending sort is:" + str(result))
+    
+    result = find_second_largest_2(numbers_test)
+    print("The second largest number in the list using ascending sort is:" + str(result))
+    
+    result = find_second_largest_3(numbers_test)
+    print("The second largest number in the list using max() and remove() is:" + str(result))
     
     number_test_1 = [5, 8, 10, 9, 1, 0, 2, 3]
     total_sum_even_1 = sum_even_numbers_1(number_test_1)
@@ -63,4 +89,3 @@ if __name__ == "__main__":
     
     total_sum_even_3 = sum_even_numbers_3(number_test_1)
     print("The sum of even elements using simple iteration is: "+ str(total_sum_even_3))
-    
