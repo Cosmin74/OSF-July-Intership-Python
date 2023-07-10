@@ -1,3 +1,5 @@
+import sys
+
 #Problem 1:
 #You are given a list of integers. Your task is to find the second largest number in the list.
 #Write a Python function called find_second_largest(numbers) that takes a list of integers as input and returns the second largest number in the list.
@@ -69,7 +71,50 @@ def sum_even_numbers_3(numbers):
             sum_even_elements = sum_even_elements + number
     return sum_even_elements
 
+#Problem 3 
+#You are given a list of integers. Your task is to find the maximum difference between any two numbers in the list.
+#Write a Python function called max_difference(numbers) that takes a list of integers as input and returns the maximum difference between any two numbers in the list.
+
+#Method 1 using sort
+def max_difference_1(numbers):
+    
+    '''
+    The list is sorted descending and after that we return the defference between first and last element
+    '''
+    
+    numbers.sort(reverse=True)
+    maximum_diff = 0 
+    maximum_diff = numbers[0] - numbers[-1]
+    return maximum_diff
+
+#Method 2 using min and max
+def max_difference_2(numbers):
+    
+    '''
+    With find the maximum and minimum elements in list and then we make difference betwen them
+    '''
+    
+    max_element = max(numbers)
+    min_element = min(numbers)
+    difference = max_element - min_element
+    return difference
+
+#Method 3 using simple iteration
+def max_difference_3(numbers):
+    
+    '''
+    It is made diferrence betweeneach element and try to find the maximum
+    '''
+    maximum_dif = -sys.maxsize - 1
+    for i in numbers:
+        for j in numbers:
+            if abs(i-j) > maximum_dif:
+                maximum_dif = abs(i-j) 
+    
+    return maximum_dif
+
 if __name__ == "__main__":
+    #Testing functions for problem 1
     numbers_test = [5, 2, 7, 3, 9, 1]
     result = find_second_largest_1(numbers_test)
     print("The second largest number in the list using descending sort is:" + str(result))
@@ -80,6 +125,8 @@ if __name__ == "__main__":
     result = find_second_largest_3(numbers_test)
     print("The second largest number in the list using max() and remove() is:" + str(result))
     
+    print("\n")
+    #Testing functions for problem 2
     number_test_1 = [5, 8, 10, 9, 1, 0, 2, 3]
     total_sum_even_1 = sum_even_numbers_1(number_test_1)
     print("The sum of even elements using sum() is: "+ str(total_sum_even_1))
@@ -89,3 +136,19 @@ if __name__ == "__main__":
     
     total_sum_even_3 = sum_even_numbers_3(number_test_1)
     print("The sum of even elements using simple iteration is: "+ str(total_sum_even_3))
+    
+    print("\n")
+    #Testing functions for problem 3
+    numbers_test_2 = [1, 3, 6, 7, 11, 9, 23]
+    difference_1 = max_difference_1(numbers_test_2)
+    print("Maximum difference between any two elements using sort is : "+str(difference_1))
+    
+    difference_2 = max_difference_2(numbers_test_2)
+    print("Maximum difference between any two elements using min and max is : "+str(difference_2))
+    
+    difference_3 = max_difference_3(numbers_test_2)
+    print("Maximum difference between any two elements using min and max is : "+str(difference_3))
+    
+    
+    
+    
