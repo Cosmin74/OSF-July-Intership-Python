@@ -1,5 +1,6 @@
 import sys
 import random
+
 #Problem 1:
 #You are given a list of integers. Your task is to find the second largest number in the list.
 #Write a Python function called find_second_largest(numbers) that takes a list of integers as input and returns the second largest number in the list.
@@ -124,14 +125,31 @@ def generate_list():
     elements.remove(9)
     return elements
 
-def find_missing_element(numbers):
+#Method 1 using Gauss sum
+def find_missing_element_1(numbers):
+    
+    '''
+    We used Gauss sum to find out the sum of all elements from 1 t0 100 and we did sum for our list,then we substract this 2 values and find out the missing element
+    '''
+    
     sum_of_elements = 0
     gauss_sum = 100*(100 + 1)/2
     sum_of_elements = sum(number for number in numbers)
     missing_element = gauss_sum - sum_of_elements
     return missing_element
     
+#Method 2 using difference function
+def find_missing_element_2(numbers):
 
+    '''
+    Make a difference between a list with all elements and th given list
+    '''
+
+    elements = []
+    for i in range(1, 101):
+        elements.append(i)
+    new_list = set(elements).difference(numbers)
+    return new_list.pop()
 
 if __name__ == "__main__":
     #Testing functions for problem 1
@@ -176,6 +194,9 @@ if __name__ == "__main__":
     print("The list of 99 elements :")
     print(numbers_test_3)
     
-    element_missed = find_missing_element(numbers_test_3)
-    element_missed = int(element_missed)
-    print("The missing element is :" + str(element_missed))
+    element_missed_1 = find_missing_element_1(numbers_test_3)
+    element_missed_1 = int(element_missed_1)
+    print("The missing element using Gauss sum is :" + str(element_missed_1))
+    
+    element_missed_2 = find_missing_element_2(numbers_test_3)
+    print("The missing element using difference function is :" + str(element_missed_2))
