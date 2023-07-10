@@ -1,5 +1,5 @@
 import sys
-
+import random
 #Problem 1:
 #You are given a list of integers. Your task is to find the second largest number in the list.
 #Write a Python function called find_second_largest(numbers) that takes a list of integers as input and returns the second largest number in the list.
@@ -113,6 +113,26 @@ def max_difference_3(numbers):
     
     return maximum_dif
 
+
+#Challenge
+#Given a list of distinct integers between 1 and 100 with length 99, how do you find out the number not present in the array as efficiently as possible (array is not sorted)
+def generate_list():
+    elements = []
+    for i in range(1, 101):
+        elements.append(i)
+    random.shuffle(elements)
+    elements.remove(9)
+    return elements
+
+def find_missing_element(numbers):
+    sum_of_elements = 0
+    gauss_sum = 100*(100 + 1)/2
+    sum_of_elements = sum(number for number in numbers)
+    missing_element = gauss_sum - sum_of_elements
+    return missing_element
+    
+
+
 if __name__ == "__main__":
     #Testing functions for problem 1
     numbers_test = [5, 2, 7, 3, 9, 1]
@@ -150,5 +170,12 @@ if __name__ == "__main__":
     print("Maximum difference between any two elements using min and max is : "+str(difference_3))
     
     
+    print("\n")
+    #Testing functions for challenge
+    numbers_test_3 = generate_list()
+    print("The list of 99 elements :")
+    print(numbers_test_3)
     
-    
+    element_missed = find_missing_element(numbers_test_3)
+    element_missed = int(element_missed)
+    print("The missing element is :" + str(element_missed))
