@@ -22,3 +22,14 @@ if __name__ == "__main__" :
     
     customer1.remove_from_cart(product1)
     customer1.complete_purchase()
+    
+    customer1.add_to_cart(product3)
+    customer2.add_to_cart(product2)
+    
+    customer1.complete_purchase()
+    customer2.complete_purchase()
+    
+    customer2.remove_from_cart(product3)
+    
+    customer2.complete_purchase()
+    
