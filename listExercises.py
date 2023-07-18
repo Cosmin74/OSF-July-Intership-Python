@@ -56,7 +56,7 @@ def sum_even_numbers_2(numbers):
     It is used a filter in sum function with a lambda function
     '''
     
-    sum_even_elements = sum(filter(lambda x: not x%2 ,numbers))
+    sum_even_elements = sum(filter(lambda x: not x % 2 ,numbers))
     return sum_even_elements
 
 #Method 3 using simple iteration
@@ -133,7 +133,7 @@ def find_missing_element_1(numbers):
     '''
     
     sum_of_elements = 0
-    gauss_sum = 100*(100 + 1)/2
+    gauss_sum = 100 * (100+1) / 2
     sum_of_elements = sum(number for number in numbers)
     missing_element = gauss_sum - sum_of_elements
     return missing_element
@@ -167,25 +167,25 @@ if __name__ == "__main__":
     #Testing functions for problem 2
     number_test_1 = [5, 8, 10, 9, 1, 0, 2, 3]
     total_sum_even_1 = sum_even_numbers_1(number_test_1)
-    print("The sum of even elements using sum() is: "+ str(total_sum_even_1))
+    print("The sum of even elements using sum() is: " + str(total_sum_even_1))
     
     total_sum_even_2 = sum_even_numbers_2(number_test_1)
-    print("The sum of even elements using filter() is: "+ str(total_sum_even_2))
+    print("The sum of even elements using filter() is: " + str(total_sum_even_2))
     
     total_sum_even_3 = sum_even_numbers_3(number_test_1)
-    print("The sum of even elements using simple iteration is: "+ str(total_sum_even_3))
+    print("The sum of even elements using simple iteration is: " + str(total_sum_even_3))
     
     print("\n")
     #Testing functions for problem 3
     numbers_test_2 = [1, 3, 6, 7, 11, 9, 23]
     difference_1 = max_difference_1(numbers_test_2)
-    print("Maximum difference between any two elements using sort is : "+str(difference_1))
+    print("Maximum difference between any two elements using sort is : " + str(difference_1))
     
     difference_2 = max_difference_2(numbers_test_2)
-    print("Maximum difference between any two elements using min and max is : "+str(difference_2))
+    print("Maximum difference between any two elements using min and max is : " + str(difference_2))
     
     difference_3 = max_difference_3(numbers_test_2)
-    print("Maximum difference between any two elements using min and max is : "+str(difference_3))
+    print("Maximum difference between any two elements using min and max is : " + str(difference_3))
     
     
     print("\n")
