@@ -5,6 +5,17 @@
     <title>Task List</title>
 </head>
 <body>
+
+    <form action="/submit_task" method="post">
+        <label for="task_title">Task Title:</label>
+        <input type="text" id="task_title" name="task_title" required><br>
+        
+        <label for="task_description">Task Description:</label>
+        <textarea id="task_description" name="task_description" required></textarea><br>
+        
+        <button type="submit">Create Task</button><br>
+      </form>
+
     <h1>Task List</h1>
     <ul>
         {% for task in tasks %}
@@ -13,6 +24,7 @@
             <strong>Title:</strong> {{ task.task_title }}<br>
             <strong>Description:</strong> {{ task.task_description }}<br>
             <strong>State:</strong> {{ task.task_state }}<br>
+            <button onclick="getTasknumber()">Delete</button><br>
         </li>
         {% endfor %}
     </ul>
