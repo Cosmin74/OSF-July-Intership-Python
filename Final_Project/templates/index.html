@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+  </head>
+  <body>
+    <main>
+        <h1>Welcome to My Website</h1>
+        <button onclick="window.location.href='/tasks'">View Tasks</button><br>
+        <input type="number" id="task_id" name="task_id"><br>
+        <button onclick="getTasknumber()'">View Tasks</button><br>
+    </main>
+    <script>
+        function getTasknumber() {
+            var taskId = document.getElementById('task_id').value;
+
+            // Construct the URL with the Task ID and navigate to the '/tasks/' route
+            window.location.href = '/tasks/' + taskId;
+        }
+    </script>
+  </body>
+</html>
