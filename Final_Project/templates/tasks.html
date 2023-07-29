@@ -6,15 +6,18 @@
 </head>
 <body>
     <h1>To do application</h1>
-    <form action="/submit_task" method="post">
-        <label for="task_title">Task Title:</label>
-        <input type="text" id="task_title" name="task_title" required><br>
+    <form action="/submit_task" method="post" id="forms">
+        <fieldset class="card">
+        <h2>Introduce a new task</h2>
+        <label for="task_title">Task Title:</label><br><br>
+        <input type="text" id="task_title" name="task_title" required><br><br>
         
-        <label for="task_description">Task Description:</label>
-        <textarea id="task_description" name="task_description" required></textarea><br>
+        <label for="task_description">Task Description:</label><br><br>
+        <textarea id="task_description" name="task_description" required></textarea><br><br>
         
-        <button type="submit">Create Task</button><br>
-      </form>
+        <button type="submit" class="buton">Create Task</button><br>
+        </fieldset>
+    </form>
 
     <ul>
         {% for task in tasks %}
@@ -25,12 +28,12 @@
             <strong>State:</strong> {{ task.task_state }}<br>
             <form action="/tasks/{{ task.task_id }}" method="post">
                 <input type="hidden" name="_method" value="delete">
-                <button type="submit">Delete</button>
+                <button type="submit" class="buton">Delete</button>
             </form>
 
             <form action="/tasks/{{ task.task_id }}" method="post">
                 <input type="hidden" name="_method_1" value="put">
-                <button type="submit">Update</button>
+                <button type="submit" class="buton">Update</button>
             </form>
         </li>
         {% endfor %}
@@ -45,9 +48,90 @@
             background-image: linear-gradient(#1cbae6, #000);
             background-repeat: no-repeat;
             -webkit-background-clip:text;
-            background-position: -1750px, 0;
+            background-position: -1650px, 0;
             animation: backcolor 2s linear infinite alternate;
         }
+
+        @keyframes backcolor{
+            100%{
+              background-position: 0 0 ;
+            }
+          }
+
+
+        
+    .card{
+        width:90%;
+        height:100%;
+        border-radius:25px;
+        backdrop-filter:blur(5px);
+        background-color:rgb(255,255,255,0.2);
+      }
+  
+      #forms{
+        background-color: rgb(0,0,0,0.8);
+        padding-top: 34px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: auto;
+        border-radius: 3px;
+        margin: auto;
+        margin-top:10px;
+        padding-bottom: 60px;
+        width: auto;
+      }
+  
+      .info{
+        font-size: 16px;
+        line-height: 25px;
+        margin:40px 0;
+        font-weight:400;
+      }
+  
+      input[type="text"]{
+        height: 30px;
+        width: 298.5px;
+        background-color: #eee;
+        border:2px;
+        position: relative;
+        font-size: 2em;
+        color:#333;
+        text-align: center;
+        border-radius: 5px;
+      }
+  
+      input[type=text]:focus {
+        background-color: rgb(17, 177, 231);
+        border: 3px solid orange;
+      }
+
+      textarea:focus {
+        background-color: rgb(17, 177, 231);
+        border: 3px solid orange;
+      }
+
+      textarea{
+        height: 90px;
+        width: 498.5px;
+        background-color: #eee;
+        border:2px;
+        position: relative;
+        font-size: 2em;
+        color:#333;
+        text-align: center;
+        border-radius: 5px;
+      }
+
+      button{
+        background-color: green;
+        border-radius: 15px;
+        margin: 8px 1px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
     </style>
 </body>
 </html>

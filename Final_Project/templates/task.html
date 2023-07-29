@@ -6,14 +6,9 @@
 </head>
 <body>
     <h1>To do application</h1>
-    <ul>
-        <li>
-            <strong>ID:</strong> {{ task.task_id }}<br>
-            <strong>Title:</strong> {{ task.task_title }}<br>
+            <span>The task number {{ task.task_id }} called {{ task.task_title }} </span> <br>
             <strong>Description:</strong> {{ task.task_description }}<br>
             <strong>State:</strong> {{ task.task_state }}<br>
-        </li>
-    </ul>
 
     <style>
         h1 {
@@ -24,9 +19,15 @@
             background-image: linear-gradient(#1cbae6, #000);
             background-repeat: no-repeat;
             -webkit-background-clip:text;
-            background-position: -650px, 0;
+            background-position: -1650px, 0;
             animation: backcolor 6s linear infinite alternate;
         }
+        
+        @keyframes backcolor{
+            100%{
+              background-position: 0 0 ;
+            }
+          }
     </style>
 </body>
 </html>
