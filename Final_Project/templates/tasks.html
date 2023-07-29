@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Task List</title>
+    <title>To do app</title>
 </head>
 <body>
-
+    <h1>To do application</h1>
     <form action="/submit_task" method="post">
         <label for="task_title">Task Title:</label>
         <input type="text" id="task_title" name="task_title" required><br>
@@ -16,7 +16,6 @@
         <button type="submit">Create Task</button><br>
       </form>
 
-    <h1>Task List</h1>
     <ul>
         {% for task in tasks %}
         <li>
@@ -24,9 +23,31 @@
             <strong>Title:</strong> {{ task.task_title }}<br>
             <strong>Description:</strong> {{ task.task_description }}<br>
             <strong>State:</strong> {{ task.task_state }}<br>
-            <button onclick="getTasknumber()">Delete</button><br>
+            <form action="/tasks/{{ task.task_id }}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete</button>
+            </form>
+
+            <form action="/tasks/{{ task.task_id }}" method="post">
+                <input type="hidden" name="_method_1" value="put">
+                <button type="submit">Update</button>
+            </form>
         </li>
         {% endfor %}
     </ul>
+
+    <style>
+        h1 {
+            transform: translate (-50%, -50%);
+            font-size:70px;
+            -webkit-text-stroke: 1px #000;
+            color:transparent;
+            background-image: linear-gradient(#1cbae6, #000);
+            background-repeat: no-repeat;
+            -webkit-background-clip:text;
+            background-position: -1750px, 0;
+            animation: backcolor 2s linear infinite alternate;
+        }
+    </style>
 </body>
 </html>

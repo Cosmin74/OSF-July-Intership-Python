@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Task List</title>
+    <title>To do app</title>
 </head>
 <body>
-    <h1>Task </h1>
+    <h1>To do application</h1>
     <ul>
         <li>
             <strong>ID:</strong> {{ task.task_id }}<br>
@@ -14,5 +14,19 @@
             <strong>State:</strong> {{ task.task_state }}<br>
         </li>
     </ul>
+
+    <style>
+        h1 {
+            transform: translate (-50%, -50%);
+            font-size:70px;
+            -webkit-text-stroke: 1px #000;
+            color:transparent;
+            background-image: linear-gradient(#1cbae6, #000);
+            background-repeat: no-repeat;
+            -webkit-background-clip:text;
+            background-position: -650px, 0;
+            animation: backcolor 6s linear infinite alternate;
+        }
+    </style>
 </body>
 </html>
