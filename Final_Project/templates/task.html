@@ -6,10 +6,13 @@
 </head>
 <body>
     <h1>To do application</h1>
-            <span>The task number {{ task.task_id }} called {{ task.task_title }} </span> <br>
-            <strong>Description:</strong> {{ task.task_description }}<br>
-            <strong>State:</strong> {{ task.task_state }}<br>
-
+        <fieldset>
+            <h3>For the task number {{ task.task_id }}, {{ task.task_title }}, {{ task.task_description }}</h3> 
+            <strong>Status:</strong> 
+            <span class="{% if task.task_state == 'Completed' %}task-completed{% else %}task-not-completed{% endif %}">
+                {{ task.task_state }}
+             </span><br><br>
+        </fieldset>
     <style>
         h1 {
             transform: translate (-50%, -50%);
@@ -28,6 +31,27 @@
               background-position: 0 0 ;
             }
           }
+
+        fieldset{
+            width:auto;
+            margin-left:-4px;
+            border-radius:5px;
+          }
+
+          .task-completed {
+            border-radius:4px;
+            font-size: 18px;
+            background-color: green;
+            color: white;
+        }
+
+        span{
+           padding:12px;
+        }
+        
+        .task-not-completed {
+            background-color: gray;
+        }
     </style>
 </body>
 </html>
