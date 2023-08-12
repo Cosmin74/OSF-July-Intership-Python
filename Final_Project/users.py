@@ -11,17 +11,29 @@ def hash_password(password):
 
 @users_bp.route('/register', methods=['POST'])
 def register_user():
-    data = request.get_json()
-    password = data.get('encrypt_pass')
+    ok = 0
+    last_name = request.form.get('last_name')
+    first_name = request.form.get('first_name')
+    email = request.form.get('email')
+    password = request.form.get('pass')
     secret = hash_password(password)
-    new_user = User.create(
-        first_name=data.get('first_name'),
-        last_name=data.get('last_name'),
-        email=data.get('email'),
+    new_user = User(
+        first_name= first_name,
+        last_name= last_name,
+        email= email,
         encrypt_pass=secret
     )
-    return jsonify({
-        "last_name": new_user.last_name,
-        "first_name": new_user.first_name,
-        "email": new_user.email    
-    }), 201
+    new_user.save()
+    ok = 1
+    return render_template('register.html', ok= ok)
+
+@users_bp.route('/register', methods=['GET'])
+def register_page():
+    return render_template('register.html')
+
+
+@users_bp.route('/authentification', methods=['GET'])
+def login_user():
+    users = list(User.select())
+    return jsonify([{"id": user.user_id, "first_name": user.first_name, "last_name": user.last_name, "email": user.email} for user in users])
+    

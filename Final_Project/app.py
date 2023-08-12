@@ -9,7 +9,7 @@ app.register_blueprint(users_bp)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return render_template('index.html')
+    return render_template('login.html')
 
 # Run the Flask application
 if __name__ == '__main__':
